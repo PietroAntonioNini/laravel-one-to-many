@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [ProjectController::class, 'index']);
 
-Route::resource('projects', ProjectController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -29,11 +29,17 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'verified'])
-        ->name('admin.')
-        ->prefix('admin')
-        ->group(function() {
+->name('admin.')
+->prefix('admin')
+->group(function() {
+    
+    
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
+    
+    //rotta di risorsa per i project
+    Route::resource('projects', ProjectController::class);
 
-                
-            Route::get('/', [DashboardController::class, 'index'])->name('index');
-        }
+    //rotta di risorsa per i tipi
+    Route::resource('types', TypeController::class);
+}
 );

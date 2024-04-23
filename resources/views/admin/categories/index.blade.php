@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+@dump($types)
+
 <div class="container alert alert-success alert-dismissible fade show w-25" role="alert">
 
     <div class="card-header">{{ Auth::user()->name }}</div>
@@ -22,7 +25,7 @@
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center">
         <h1>Benvenuto {{ Auth::user()->name }}</h1>  
-        <a href="{{ route('admin.projects.create') }}" class="btn btn-outline-primary">Aggiungi nuovo progetto</a>
+        <a href="{{ route('projects.create') }}" class="btn btn-outline-primary">Aggiungi nuovo progetto</a>
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
