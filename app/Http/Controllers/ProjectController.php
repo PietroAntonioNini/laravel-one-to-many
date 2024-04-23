@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,7 +32,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        //prendo tutti i tipi dal db
+        $types = Type::all();
+
+        return view('admin.projects.create',compact('types'));
     }
 
     /**
@@ -60,7 +64,7 @@ class ProjectController extends Controller
 
 
         //Reindirizziamo alla pagina dei Progetti
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.index', $newProject->id);
     }
 
     /**
@@ -76,7 +80,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container py-5">
-    <form action="{{ route('projects.update', $project->id) }}" method="POST">
+    <form action="{{ route('admin.projects.update', $project->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group mb-3">
@@ -24,6 +24,18 @@
             <label for="technologies_used">Linguaggi usati:</label>
             <input type="text" class="form-control @error('technologies_used') is-invalid  @enderror" id="technologies_used" name="technologies_used" value="{{old('technologies_used') ?? $project->technologies_used}}">
             @error('technologies_used') <span class="text-danger">{{$message}}</span> @enderror
+        </div>
+        <div class="form-group mb-3">
+            <label for="type_id">Tipologia:</label>
+            <select class="form-select" name="type_id" id="type_id">
+            
+                <option value=""></option>
+
+                @foreach ($types as $type)
+                <option value="{{$type->id}}" {{ $type->id == $project->type_id ? 'selected' : '' }}>{{ $type->title }}</option>
+                @endforeach
+
+            </select>
         </div>
         <div class="form-group mb-3">
             <label for="github_link">Link alla repo GitHub:</label>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             
-            $table->foreignId('type_id')->constrained()->nullable();
+            $table->foreignId('type_id')->nullable()->constrained();
 
         });
     }

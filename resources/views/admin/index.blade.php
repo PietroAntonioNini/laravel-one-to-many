@@ -42,7 +42,7 @@
                         <a href="#" class="btn btn-primary">Link GitHub</a>
 
                         <div class="d-flex">
-                            <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-outline-warning btn-sm me-2">Modifica</a>
+                            <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-outline-warning btn-sm me-2">Modifica</a>
 
                             <!-- Modal button -->
                             <button type="button" class="btn btn-outline-danger btn-sm"  data-bs-toggle="modal" data-bs-target="#delete-project">
@@ -68,7 +68,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
 
-                                            <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="p-6">
+                                            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="p-6">
                                                 @csrf
                                                 @method('DELETE')
 

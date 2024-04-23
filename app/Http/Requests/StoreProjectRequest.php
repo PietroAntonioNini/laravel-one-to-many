@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreProjectRequest extends FormRequest
 {
@@ -21,12 +22,20 @@ class StoreProjectRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Ottieni l'ID del progetto attualmente in fase di aggiornamento
+        $projectId = $this->route('project') ? $this->route('project')->id : null;
+
         return [
-            'name' => 'unique:projects,name|required|max:50',
+            'name' => [
+                'required',
+                'max:50',
+                Rule::unique('projects')->ignore($projectId),
+            ],
             'description' => 'required',
             'cover_image' => 'file|max:1024|nullable|mimes:jpg,bmp,png',
             'technologies_used' => 'required|max:50',
             'github_link' => 'required',
+            'type_id' => 'nullable|exists:types,id'
         ];
     }
 
