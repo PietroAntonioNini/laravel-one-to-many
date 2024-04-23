@@ -36,6 +36,7 @@
                   <h5 class="card-title">{{$project->name}}</h5>
                   <p class="card-text">{{$project->description}}</p>
                   <p class="card-text"><small>{{$project->technologies_used}}</small></p>
+                  <p class="card-text"><small>{{$project->type?->title}}</small></p>
 
                   {{-- button  --}}
                   <div class="d-flex justify-content-between align-items-center">

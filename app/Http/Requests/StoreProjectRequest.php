@@ -32,7 +32,7 @@ class StoreProjectRequest extends FormRequest
                 Rule::unique('projects')->ignore($projectId),
             ],
             'description' => 'required',
-            'cover_image' => 'file|max:1024|nullable|mimes:jpg,bmp,png',
+            'cover_image' => 'nullable|file|max:2048|mimes:jpg,bmp,png',
             'technologies_used' => 'required|max:50',
             'github_link' => 'required',
             'type_id' => 'nullable|exists:types,id'

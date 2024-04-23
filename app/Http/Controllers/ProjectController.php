@@ -101,6 +101,10 @@ class ProjectController extends Controller
             $project->cover_image = $path;
         }
 
+        if (!$request->hasFile('cover_image')) {
+            $project->cover_image = null;
+        }
+
         $project->update($request->all());
         
         return redirect()->route('admin.index', $project->id);

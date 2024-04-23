@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container py-5">
-    <form action="{{ route('admin.projects.update', $project->id) }}" method="POST">
+    <form action="{{ route('admin.projects.update', $project->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="form-group mb-3">
@@ -17,7 +17,7 @@
         </div>
         <div class="form-group mb-3">
             <label for="cover_image">Immagine di copertina:</label>
-            <input type="file" class="form-control @error('cover_image') is-invalid  @enderror" id="cover_image" name="cover_image" value="{{old('cover_image') ?? $project->cover_image}}">
+            <input type="file" class="form-control @error('cover_image') is-invalid  @enderror" id="cover_image" name="cover_image">
             @error('cover_image') <span class="text-danger">{{$message}}</span> @enderror
         </div>
         <div class="form-group mb-3">
@@ -32,7 +32,7 @@
                 <option value=""></option>
 
                 @foreach ($types as $type)
-                <option value="{{$type->id}}" {{ $type->id == $project->type_id ? 'selected' : '' }}>{{ $type->title }}</option>
+                <option value="{{$type->id}}" {{ $type->id == old('type_id', $project->type ? $project->type->id : '') ? 'selected' : '' }}>{{ $type->title }}</option>
                 @endforeach
 
             </select>
