@@ -74,14 +74,6 @@
                                                 @method('DELETE')
 
                                                 <div class="input-group">
-                                                    <input id="password" name="password" type="password" class="form-control" placeholder="{{ __('Password') }}" />
-
-                                                    @error('password')
-                                                    <span class="invalid-feedback mt-2" role="alert">
-                                                        <strong>{{ $errors->userDeletion->get('password')}}</strong>
-                                                    </span>
-                                                    @enderror
-
                                                     <button type="submit" class="btn btn-danger">
                                                         {{ __('Elimina Progetto') }}
                                                     </button>

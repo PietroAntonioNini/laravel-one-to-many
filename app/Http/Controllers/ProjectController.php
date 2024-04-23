@@ -90,7 +90,7 @@ class ProjectController extends Controller
      */
     public function update(StoreProjectRequest $request, Project $project)
     {
-        $request->validated();
+        $validatedData = $request->validated();
 
         //Controllo se la cover image è stata inserita
         if($request->hasFile('cover_image')) {
@@ -101,11 +101,7 @@ class ProjectController extends Controller
             $project->cover_image = $path;
         }
 
-        if (!$request->hasFile('cover_image')) {
-            $project->cover_image = null;
-        }
-
-        $project->update($request->all());
+        $project->update($validatedData);
         
         return redirect()->route('admin.index', $project->id);
     }

@@ -17,8 +17,20 @@
         </div>
         <div class="form-group mb-3">
             <label for="cover_image">Immagine di copertina:</label>
-            <input type="file" class="form-control @error('cover_image') is-invalid  @enderror" id="cover_image" name="cover_image">
+            <input type="file" class="form-control @error('cover_image') is-invalid  @enderror" id="cover_image" name="cover_image" value="{{old('cover_image') ?? $project->cover_image}}">
             @error('cover_image') <span class="text-danger">{{$message}}</span> @enderror
+
+            @if($project->cover_image)
+            <div>
+                <p>Immagine attuale:</p>
+                <img src="{{ asset('storage/' . $project->cover_image) }}" alt="Immagine attuale" style="max-width: 200px;">
+            </div>
+            @else
+            <div>
+                <p>Nessuna immagine attualmente associata.</p>
+            </div>
+            @endif
+
         </div>
         <div class="form-group mb-3">
             <label for="technologies_used">Linguaggi usati:</label>
